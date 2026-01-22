@@ -13,7 +13,7 @@ export default function App() {
       {/* Global Toasts */}
       <Toaster position="bottom-right" reverseOrder={false} />
       {/* main routes */}
-      <Container>
+      <Container className="my-4 min-vh-100">
         <Routes>
           <Route path='/' Component={Home} />
           <Route path='/login' Component={Login} />        
