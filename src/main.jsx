@@ -6,8 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter } from 'react-router-dom'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    {/* Global proider for redux */}
+    <Provider store={store}>
+    {/* Global router for react router dom  */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
+    </Provider>
   </StrictMode>,
 )
