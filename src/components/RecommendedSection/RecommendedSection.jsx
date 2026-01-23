@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect , useState} from "react";
 import { API } from "../../Apis/API_Servece"
 import { errorHandler } from '../../utils/errorHandler';
+import { ProductListPreview } from '../ProductListPreview/ProductListPreview';
 
 export const RecommendedSection = () => {
   // Get Category
@@ -16,7 +17,7 @@ export const RecommendedSection = () => {
             `/products/category/${recommendedCategory}`
             );
 
-            console.log(response.data.products);
+            setProducts(response.data.products);
         } catch (error) {
             errorHandler(error);
         }
@@ -27,7 +28,8 @@ export const RecommendedSection = () => {
 
     return (
         <div className='my-m'>
-            <p className='display-6 mb-3'>Recommended for you</p>
+            <h4 className='display-6 my-3'>Recommended for you</h4>
+            <ProductListPreview products={products} />
         </div>
     )
 };
