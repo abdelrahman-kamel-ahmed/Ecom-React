@@ -5,6 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './store/store.jsx'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* Global proider for redux */}

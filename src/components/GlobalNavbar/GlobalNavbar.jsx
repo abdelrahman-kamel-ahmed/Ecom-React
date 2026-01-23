@@ -4,7 +4,7 @@ import { SiWoocommerce } from "react-icons/si";
 import { Link } from 'react-router-dom';
 export const GlobalNavbar = () => {
   return (
-    <Navbar expand="md" className='bg-light mb-4 data-bs-theme="light"'>
+    <Navbar expand="md" className='bg-light data-bs-theme="light"'>
       <Container>
         {/* barnd with logo */}
         <Navbar.Brand as={Link} to={'/'}>
