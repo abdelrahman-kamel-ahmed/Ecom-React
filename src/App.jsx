@@ -5,6 +5,7 @@ import { GlobalNavbar } from "./components/GlobalNavbar/GlobalNavbar";
 import { Container } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 import { Footer } from "./components/Footer/Footer";
+import { NotFound } from "./pages/NotFound/NotFound";
 export default function App() {
   return (
     <div>
@@ -16,7 +17,8 @@ export default function App() {
       <Container className="my-4 min-vh-100">
         <Routes>
           <Route path='/' Component={Home} />
-          <Route path='/login' Component={Login} />        
+          <Route path='/login' Component={Login} />  
+          <Route path='*' Component={NotFound} />      
           </Routes>
       </Container>
       {/* Global components */}

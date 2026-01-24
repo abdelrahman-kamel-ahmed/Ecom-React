@@ -4,14 +4,14 @@ import { SiWoocommerce } from "react-icons/si";
 import { Link } from 'react-router-dom';
 export const GlobalNavbar = () => {
   return (
-    <Navbar expand="md" className='bg-light data-bs-theme="light"'>
+    <Navbar expand="md" bg="dark" variant="dark">
       <Container>
         {/* barnd with logo */}
         <Navbar.Brand as={Link} to={'/'}>
           <SiWoocommerce className='display-1 text-primary'/>
         </Navbar.Brand>
         {/* toggle button */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav variant-light"/>
         {/* navbar links */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
