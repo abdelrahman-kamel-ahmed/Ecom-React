@@ -5,12 +5,14 @@ import { useEffect } from 'react';
 import { API } from '../../Apis/API_Servece';
 import { errorHandler } from '../../utils/errorHandler';
 import { Paginator } from '../../components/paginator/paginator';
+import { Loading } from '../../components/Loading/Loading';
 
 export const Products = () => {
     const [products , setProducts] = useState([]);
     const [noPages , setNoPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [skip , setSkip] = useState(0);
+    const [loading , setLoading] = useState(true);
     const limit =20;
     function handleCurrentPage(pageNumber){
         setCurrentPage(pageNumber);
@@ -19,6 +21,7 @@ export const Products = () => {
     useEffect(function(){
     async function fetchAllProducts() {
         try {
+        setLoading(true);
         // Hit Endpoint
         const response = await API.get(`/products?skip=${skip}&limit=${limit}`);
 
@@ -30,9 +33,15 @@ export const Products = () => {
         } catch (error) {
         errorHandler(error);
         }
+        finally {
+            setLoading(false);
+        }
     }
     fetchAllProducts();
     },[skip]);
+    if(loading){
+        return <Loading />;
+    }
     return (
         <div>
             <h4 className='display-6 my-3'>All Products</h4>

@@ -18,7 +18,7 @@ export const ProductCard = ({product ,withFooter=false}) => {
             </Card.Body>
             {withFooter && <Card.Footer className='d-flex justify-content-between align-items-center'>
                 <AddToCartButton />
-                <Link to={`/product-datails/${id}`} className='btn btn-dark ms-2'>View Details</Link>  
+                <Link to={`/product-details/${id}`} className='btn btn-dark ms-2'>View Details</Link>  
             </Card.Footer>}
         </Card>
     )

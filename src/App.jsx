@@ -22,7 +22,7 @@ export default function App() {
           <Route path='/login' Component={Login} />  
           <Route path='*' Component={NotFound} />
           <Route path='products/*' Component={Products} />
-          <Route path='product-details/:id' Component={ProductDetails} />
+          <Route path="/product-details/:id" Component={ProductDetails} />
           </Routes>
       </Container>
       {/* Global components */}
