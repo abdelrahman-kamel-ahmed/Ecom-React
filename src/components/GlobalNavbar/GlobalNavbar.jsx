@@ -21,6 +21,9 @@ export const GlobalNavbar = () => {
             <Nav.Item>
               <Nav.Link as={Link} to={'/login'}>Login</Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={Link} to={'/Products'}>Products</Nav.Link>
+            </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Container>

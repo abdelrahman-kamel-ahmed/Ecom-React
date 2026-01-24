@@ -6,6 +6,8 @@ import { Container } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 import { Footer } from "./components/Footer/Footer";
 import { NotFound } from "./pages/NotFound/NotFound";
+import { Products } from "./pages/Products/Products";
+import { ProductDetails } from "./pages/ProductDetails/ProductDetails";
 export default function App() {
   return (
     <div>
@@ -18,7 +20,9 @@ export default function App() {
         <Routes>
           <Route path='/' Component={Home} />
           <Route path='/login' Component={Login} />  
-          <Route path='*' Component={NotFound} />      
+          <Route path='*' Component={NotFound} />
+          <Route path='products/*' Component={Products} />
+          <Route path='product-details/:id' Component={ProductDetails} />
           </Routes>
       </Container>
       {/* Global components */}
