@@ -4,6 +4,7 @@ import { SiWoocommerce } from "react-icons/si";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { LogOutButton } from '../LogOutButton/LogOutButton';
+import { Avatar } from '../Avatar/Avatar';
 export const GlobalNavbar = () => {
   
   //select isloggedin
@@ -31,6 +32,7 @@ export const GlobalNavbar = () => {
           {
               IsLoggedIn?(
                 <>
+                <Avatar/>
                 <LogOutButton/>
                 </>
               ):

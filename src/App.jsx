@@ -14,6 +14,7 @@ import { errorHandler } from "./utils/errorHandler";
 import { login } from "./store/slicies/userSlices";
 import { API } from "./Apis/API_Servece";
 import { Loading } from "./components/Loading/Loading";
+import { Profile } from "./pages/myProfile/myProfile";
 export default function App() {
   //loading
   const [loading,setLoading]=useState(true);
@@ -24,7 +25,10 @@ export default function App() {
       //get token
       const token = getTokenFromLocalStorage();
       //check token
-      if(!token) return;
+      if(!token){
+        setLoading(false);
+        return;
+      } 
       //send token
       try {
         //enable loading
@@ -68,22 +72,23 @@ export default function App() {
           <Route path='/' Component={Home} />
           
           {
-            IsLoggedIn?
-            (
+            IsLoggedIn ? (
               <>
-              {/* profile routes */}
+                {/* profile routes */}
+                <Route path="/profile" Component={Profile} />
               </>
-            ):
-            (
+            ) : (
               <>
-              {/* login routes */}
-              <Route path='/login' Component={Login} /> 
+                {/* login routes */}
+                <Route path="/login" Component={Login} />
               </>
             )
           }
-          <Route path='*' Component={NotFound} />
+
+          
           <Route path='products/*' Component={Products} />
           <Route path="/product-details/:id" Component={ProductDetails} />
+          <Route path='*' Component={NotFound} />
           </Routes>
       </Container>
       {/* Global components */}

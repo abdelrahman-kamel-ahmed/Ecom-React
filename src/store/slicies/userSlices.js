@@ -8,7 +8,7 @@ const userSlice=createSlice({
     },
     reducers :{
         login:(state,action)=>{
-            state.user=action.payload.user;
+            state.user=action.payload;
             state.IsLoggedIn=true;
         },
         logout:(state)=>{

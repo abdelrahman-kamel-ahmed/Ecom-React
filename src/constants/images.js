@@ -7,4 +7,5 @@ import HERO_IMAGE_6 from'../assets/hero6.jpg'
 import Not_Found_Image  from '../assets/NotFound.svg'
 
 
-export const IMAGES = {HERO_IMAGE_1,HERO_IMAGE_2,HERO_IMAGE_3,HERO_IMAGE_4,HERO_IMAGE_5,HERO_IMAGE_6,Not_Found_Image};
+import AVATAR from '../assets/profAvatar.png'
+export const IMAGES = {HERO_IMAGE_1,HERO_IMAGE_2,HERO_IMAGE_3,HERO_IMAGE_4,HERO_IMAGE_5,HERO_IMAGE_6,Not_Found_Image,AVATAR};
