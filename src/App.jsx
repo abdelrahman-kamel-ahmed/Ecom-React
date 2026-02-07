@@ -8,9 +8,54 @@ import { Footer } from "./components/Footer/Footer";
 import { NotFound } from "./pages/NotFound/NotFound";
 import { Products } from "./pages/Products/Products";
 import { ProductDetails } from "./pages/ProductDetails/ProductDetails";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
+import { useEffect , useState} from "react";
+import { errorHandler } from "./utils/errorHandler";
+import { login } from "./store/slicies/userSlices";
+import { API } from "./Apis/API_Servece";
+import { Loading } from "./components/Loading/Loading";
 export default function App() {
+  //loading
+  const [loading,setLoading]=useState(true);
   const {IsLoggedIn} = useSelector(state=>state.user);
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    async function verifyMe(){
+      //get token
+      const token = getTokenFromLocalStorage();
+      //check token
+      if(!token) return;
+      //send token
+      try {
+        //enable loading
+        setLoading(true);
+        //hit api
+        const response=await API.get("/auth/me",{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        });
+        //userData
+        const userData=response.data;
+        //update redux
+        dispatch(login(userData));
+
+      } catch (error) {
+        console.log(error);
+        errorHandler(error);
+        
+      } 
+      finally{
+        //disable loading
+        setLoading(false);
+      }
+    }
+    verifyMe();
+    function getTokenFromLocalStorage(){
+      return JSON.parse(localStorage.getItem('userData'))?.accessToken;
+    }
+  },[])
+  if(loading) return <Loading />;
   return (
     <div>
       {/* Global components */}
