@@ -4,6 +4,8 @@ import { errorHandler } from '../../utils/errorHandler';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { API } from '../../Apis/API_Servece';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/slicies/userSlices';
 
 export default function Login() {
   //validate data before sending 
@@ -13,6 +15,8 @@ export default function Login() {
   const passwordRef=useRef();
   // navigate
   const navigate =useNavigate();
+  // dispatch
+  const dispatch =useDispatch();
   //handler
   async function handleLogin(e) {
     e.preventDefault()
@@ -35,6 +39,7 @@ export default function Login() {
       //store in local storage and redux
       localStorage.setItem("userData", JSON.stringify(userData));
       //redux 
+      dispatch(login(userData));
 
       //redirect to home
       navigate("/");

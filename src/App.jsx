@@ -8,7 +8,9 @@ import { Footer } from "./components/Footer/Footer";
 import { NotFound } from "./pages/NotFound/NotFound";
 import { Products } from "./pages/Products/Products";
 import { ProductDetails } from "./pages/ProductDetails/ProductDetails";
+import { useSelector } from "react-redux";
 export default function App() {
+  const {IsLoggedIn} = useSelector(state=>state.user);
   return (
     <div>
       {/* Global components */}
@@ -19,7 +21,21 @@ export default function App() {
       <Container className="my-4 min-vh-100">
         <Routes>
           <Route path='/' Component={Home} />
-          <Route path='/login' Component={Login} />  
+          
+          {
+            IsLoggedIn?
+            (
+              <>
+              {/* profile routes */}
+              </>
+            ):
+            (
+              <>
+              {/* login routes */}
+              <Route path='/login' Component={Login} /> 
+              </>
+            )
+          }
           <Route path='*' Component={NotFound} />
           <Route path='products/*' Component={Products} />
           <Route path="/product-details/:id" Component={ProductDetails} />

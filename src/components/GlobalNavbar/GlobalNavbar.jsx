@@ -1,8 +1,13 @@
 import React from 'react'
-import { Container, Navbar, Nav } from 'react-bootstrap'
+import { Container, Navbar, Nav, Button }from 'react-bootstrap'
 import { SiWoocommerce } from "react-icons/si";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { LogOutButton } from '../LogOutButton/LogOutButton';
 export const GlobalNavbar = () => {
+  
+  //select isloggedin
+  const {IsLoggedIn} = useSelector(state=>state.user);
   return (
     <Navbar expand="md" bg="dark" variant="dark">
       <Container>
@@ -19,12 +24,22 @@ export const GlobalNavbar = () => {
               <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to={'/login'}>Login</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
               <Nav.Link as={Link} to={'/Products'}>Products</Nav.Link>
             </Nav.Item>
+            
           </Nav>
+          {
+              IsLoggedIn?(
+                <>
+                <LogOutButton/>
+                </>
+              ):
+              (
+                <>
+                <Button as={Link} to={'/login'}>Login</Button>
+                </>
+              )
+            }
         </Navbar.Collapse>
       </Container>
     </Navbar>
