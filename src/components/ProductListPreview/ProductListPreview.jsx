@@ -1,19 +1,18 @@
 import React from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
 import { ProductCard } from '../productCard/productCard'
 
-export const ProductListPreview = ({products=[]}) => {
+export const ProductListPreview = ({ products, onDelete }) => {
     return (
-        <>
-            <Row className='g-3 my-4 '>
-                {products.map(product => (
-                <Col key={product.id} className="mb-3" md={6} sm={12} lg={4}>
-                    <ProductCard product={product} withFooter={true}/>
-                </Col>
-            ))}
-            </Row>
-            {products.length == 0 && <p className='text-center display-6 text-secondary'>No Products Found</p>}
-        
-        </>
-    )
-}
+        <div className="row g-3">
+        {products.map(product => (
+            <div key={product.id} className="col-md-4">
+            <div className="position-relative">
+                <ProductCard product={product} withFooter={true} onDelete={onDelete} />
+            </div>
+            </div>
+        ))}
+        </div>
+    );
+};
+

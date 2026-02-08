@@ -20,6 +20,7 @@ export const Profile = () => {
   const gender = user.gender || "N/A";
   const cardnum = user.bank?.cardNumber || "**** **** **** ****";
   const cardexpiry = user.bank?.cardExpire || "**/**";
+  console.log(user);
 
   const handleEditProfile = () => {
     toast.success("Edit profile coming soon! 🎉", {

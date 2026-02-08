@@ -5,7 +5,6 @@ import HERO_IMAGE_4 from'../assets/hero4.jpg'
 import HERO_IMAGE_5 from'../assets/hero5.jpg'
 import HERO_IMAGE_6 from'../assets/hero6.jpg'
 import Not_Found_Image  from '../assets/NotFound.svg'
-
-
+import EMPTY_CART from '../assets/emptyCart.avif'
 import AVATAR from '../assets/profAvatar.png'
-export const IMAGES = {HERO_IMAGE_1,HERO_IMAGE_2,HERO_IMAGE_3,HERO_IMAGE_4,HERO_IMAGE_5,HERO_IMAGE_6,Not_Found_Image,AVATAR};
+export const IMAGES = {HERO_IMAGE_1,HERO_IMAGE_2,HERO_IMAGE_3,HERO_IMAGE_4,HERO_IMAGE_5,HERO_IMAGE_6,Not_Found_Image,AVATAR,EMPTY_CART};

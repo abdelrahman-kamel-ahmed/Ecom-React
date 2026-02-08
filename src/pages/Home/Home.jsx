@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { RecommendedSection } from '../../components/RecommendedSection/RecommendedSection';
+import { CategoriesSection } from '../../components/CategoriesSection/CategoriesSection';
 export default function Home() {
   return (
     <>
@@ -26,6 +27,8 @@ export default function Home() {
       <SwiperSlide><img src={IMAGES.HERO_IMAGE_6} alt="HERO" /></SwiperSlide>
       <SwiperSlide><img src={IMAGES.HERO_IMAGE_4} alt="HERO" /></SwiperSlide>
     </Swiper>
+    {/* categories section */}
+    <CategoriesSection/>
     
     <RecommendedSection/>
     </>

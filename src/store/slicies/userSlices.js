@@ -4,16 +4,19 @@ const userSlice=createSlice({
     name :"userSlice",
     initialState :{
         IsLoggedIn:false,
-        user:null
+        user:null,
+        isAdmin:false
     },
     reducers :{
         login:(state,action)=>{
             state.user=action.payload;
             state.IsLoggedIn=true;
+            state.isAdmin = action.payload.role === "admin";
         },
         logout:(state)=>{
             state.IsLoggedIn=false;
             state.user=null;
+            state.isAdmin=false;
         }
     }
 })

@@ -24,6 +24,7 @@ export const Products = () => {
         setLoading(true);
         // Hit Endpoint
         const response = await API.get(`/products?skip=${skip}&limit=${limit}`);
+        console.log(response.data);
 
         // Extract Data
         const { products , total } = response.data;

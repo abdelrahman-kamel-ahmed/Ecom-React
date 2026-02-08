@@ -15,10 +15,13 @@ import { login } from "./store/slicies/userSlices";
 import { API } from "./Apis/API_Servece";
 import { Loading } from "./components/Loading/Loading";
 import { Profile } from "./pages/myProfile/myProfile";
+import { Cart } from "./pages/Cart/Cart";
+import {ProductsCategory} from "./pages/ProductsCategory/ProductsCategory";
+import { DashBoard } from "./pages/DashBoard/Dashboard";
 export default function App() {
   //loading
   const [loading,setLoading]=useState(true);
-  const {IsLoggedIn} = useSelector(state=>state.user);
+  const {IsLoggedIn,isAdmin} = useSelector(state=>state.user);
   const dispatch=useDispatch();
   useEffect(()=>{
     async function verifyMe(){
@@ -84,8 +87,18 @@ export default function App() {
               </>
             )
           }
-
-          
+          {
+            isAdmin && IsLoggedIn ? (
+              <>
+                {/* profile routes */}
+              <Route path="/dashboard" Component={DashBoard} />
+              </>
+            ):(
+              <></>
+            )
+          }
+          <Route path="/category/:slug" Component={ProductsCategory } />
+          <Route path="/cart" Component={Cart} />
           <Route path='products/*' Component={Products} />
           <Route path="/product-details/:id" Component={ProductDetails} />
           <Route path='*' Component={NotFound} />
