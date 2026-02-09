@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap'
-import { AddToCartButton } from '../addToCartButton/addToCartButton'
+import { AddToCartButton } from '../AddToCartButton/AddToCartButton'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { API } from '../../Apis/API_Servece'
