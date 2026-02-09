@@ -4,7 +4,7 @@ import { API } from "../../Apis/API_Servece";
 import { errorHandler } from "../../utils/errorHandler";
 import { ProductListPreview } from "../../components/ProductListPreview/ProductListPreview";
 import { Loading } from "../../components/Loading/Loading";
-import { Paginator } from "../../components/paginator/paginator";
+import { Paginator } from "../../components/Paginator/Paginator";
 
 export const ProductsCategory = () => {
     const { slug } = useParams();

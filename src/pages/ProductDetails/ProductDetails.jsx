@@ -7,7 +7,7 @@ import { Loading } from "../../components/Loading/Loading";
 import { NotFound } from "../NotFound/NotFound";
 import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
-import { AddToCartButton } from "../../components/addToCartButton/addToCartButton";
+import { AddToCartButton } from "../../components/AddToCartButton/AddToCartButton";
 
 export const ProductDetails = () => {
   const { id } = useParams();
