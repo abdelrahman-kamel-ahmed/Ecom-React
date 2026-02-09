@@ -41,7 +41,7 @@ export const GlobalNavbar = () => {
               ):
               (
                 <>
-                <Button as={Link} to={'/login'}>Login</Button>
+                <Button as={Link} to={'/login'} variant="outline-light">Login </Button>
                 </>
               )
             }

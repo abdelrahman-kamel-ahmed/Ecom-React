@@ -3,23 +3,22 @@ import { Card, Button, Row, Col, Image, Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { IMAGES } from "../../constants/images";
 import { toast } from "react-hot-toast";
-
+import { Link } from "react-router-dom";
+import { FaTachometerAlt } from "react-icons/fa"; // dashboard icon
+import { Loading } from "../../components/Loading/Loading";
 export const Profile = () => {
-  const { user } = useSelector(state => state.user);
-  const [showCardInfo, setShowCardInfo] = useState(false); // toggle state
+  const { user, isAdmin } = useSelector(state => state.user);
+  const [showCardInfo, setShowCardInfo] = useState(false);
 
-  if (!user) return <p>Loading user...</p>;
+  if (!user) return <Loading />; 
 
   // Placeholder stats for now
-  const orders = "…";     // will fetch later
-  const wishlist = "…";   // will fetch later
-  const cartItems = "…";  // will fetch later
-  const phone = user.phone || "+20 123 456 789";
-  const city = user.address?.city || "Cairo, Egypt";
-  const role = user.role || "Customer";
+  const phone = user.phone || "1234567890";
+  const city = user.address?.city || "Canada";
+  const role = user.role || "User";
   const gender = user.gender || "N/A";
-  const cardnum = user.bank?.cardNumber || "**** **** **** ****";
-  const cardexpiry = user.bank?.cardExpire || "**/**";
+  const cardnum = user.bank?.cardNumber|| "1234 5678 9012 3456";
+  const cardexpiry = user.bank?.cardExpire|| "MM/YY";
   console.log(user);
 
   const handleEditProfile = () => {
@@ -52,7 +51,7 @@ export const Profile = () => {
         <Card 
           className="p-4 shadow-lg" 
           style={{ 
-            backgroundColor: "#1f1f2e", 
+            backgroundColor: "#000000", 
             borderRadius: "20px",
             color: "#fff"
           }}
@@ -64,14 +63,14 @@ export const Profile = () => {
               roundedCircle
               width={130}
               height={130}
-              className="border border-3 border-primary shadow-lg"
+              className="border border-3 border-danger shadow-lg"
               alt="User Avatar"
             />
           </div>
 
           <Card.Body className="text-center">
             {/* Name */}
-            <Card.Title className="fs-2 fw-bold text-warning mb-2">{user.firstName} {user.lastName}</Card.Title>
+            <Card.Title className="fs-2 fw-bold text-light mb-2">{user.firstName} {user.lastName}</Card.Title>
             <Card.Subtitle className="text-info mb-3">@{user.username}</Card.Subtitle>
 
             {/* Contact info */}
@@ -83,19 +82,19 @@ export const Profile = () => {
             <div className="mb-4">
               <Badge 
                 pill 
-                bg="success" 
-                className="me-2 p-2 fs-6 shadow"
+                bg="light" 
+                className="me-2 p-2 fs-6 shadow text-dark"
                 style={{ cursor: 'pointer' }}
-                onClick={() => setShowCardInfo(!showCardInfo)} // toggle
+                onClick={() => setShowCardInfo(!showCardInfo)}
               >
                 {showCardInfo ? `Card Info: ${cardnum} ${cardexpiry}` : "Show Card Info"}
               </Badge>
 
-              <Badge pill bg="danger" className="me-2 p-2 fs-6 shadow">
+              <Badge pill bg="light" className="me-2 p-2 fs-6 shadow text-dark">
                 Gender: { gender }
               </Badge>
 
-              <Badge pill bg="primary" className="p-2 fs-6 shadow">
+              <Badge pill bg="light" className="p-2 fs-6 shadow text-dark">
                 Role: { role }
               </Badge>
             </div>
@@ -103,19 +102,31 @@ export const Profile = () => {
             {/* Buttons */}
             <div className="d-flex justify-content-center gap-3">
               <Button 
-                variant="outline-warning" 
+                variant="outline-light" 
                 className="fw-bold shadow-sm" 
                 onClick={handleEditProfile}
               >
                 Edit Profile ✏️
               </Button>
               <Button 
-                variant="outline-info" 
+                variant="outline-light" 
                 className="fw-bold shadow-sm" 
                 onClick={handleChangePassword}
               >
                 Change Password 🔒
               </Button>
+              {
+                isAdmin && (
+                  <Button
+                    as={Link}
+                    to="/dashboard"
+                    variant="outline-danger" 
+                    className={'d-flex align-items-center gap-2 fw-bold shadow-sm text-light'}
+                  >
+                    Admin Dashboard <FaTachometerAlt />
+                  </Button> 
+                )
+              }
             </div>
           </Card.Body>
         </Card>

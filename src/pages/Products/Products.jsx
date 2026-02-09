@@ -4,9 +4,8 @@ import { ProductListPreview } from '../../components/ProductListPreview/ProductL
 import { useEffect } from 'react';
 import { API } from '../../Apis/API_Servece';
 import { errorHandler } from '../../utils/errorHandler';
-import { Paginator } from '../../components/paginator/paginator';
-import { Loading } from '../../components/Loading/Loading';
-
+import { Paginator } from '../../components/Paginator/Paginator';
+import { Loading } from '../../components/Loading/Loading'
 export const Products = () => {
     const [products , setProducts] = useState([]);
     const [noPages , setNoPages] = useState(0);
@@ -14,6 +13,7 @@ export const Products = () => {
     const [skip , setSkip] = useState(0);
     const [loading , setLoading] = useState(true);
     const limit =20;
+    
     function handleCurrentPage(pageNumber){
         setCurrentPage(pageNumber);
         setSkip((pageNumber-1)*limit);
@@ -45,8 +45,8 @@ export const Products = () => {
     }
     return (
         <div>
-            <h4 className='display-6 my-3'>All Products</h4>
-            <ProductListPreview products={products} />
+            <h4 className='display-6 my-3 fw-bold'>All Products</h4>
+            <ProductListPreview products={products}  isPublic={true}/>
             <Paginator noPages={noPages} onPress={handleCurrentPage} currentPage={currentPage} />
         </div>
     )

@@ -28,8 +28,8 @@ export const RecommendedSection = () => {
 
     return (
         <div className='my-m'>
-            <h4 className='display-6 my-3'>Recommended for you</h4>
-            <ProductListPreview products={products} />
+            <h4 className='display-6 my-3 fw-bold'>Recommended for you</h4>
+            <ProductListPreview products={products} isPublic={true}/>
         </div>
     )
 };

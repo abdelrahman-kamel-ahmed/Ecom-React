@@ -53,7 +53,7 @@ export const ProductDetails = () => {
     <Row className="mt-4">
       {/* LEFT – Images */}
       <Col md={6}>
-        <Card className="shadow-sm border-0">
+        <Card className="shadow-sm border-0 bg-dark">
           <Card.Body>
             <Image
               src={mainImage}
@@ -69,7 +69,7 @@ export const ProductDetails = () => {
                   width={70}
                   height={70}
                   rounded
-                  className={`border ${img === mainImage ? "border-primary" : ""}`}
+                  className={`border ${img === mainImage ? "border-light" : ""}`}
                   style={{ cursor: "pointer", objectFit: "cover" }}
                   onClick={() => setMainImage(img)}
                 />
@@ -81,16 +81,16 @@ export const ProductDetails = () => {
 
       {/* RIGHT – Details */}
       <Col md={6}>
-        <Card className="shadow-lg border-0 p-4">
-          <Badge bg="dark" className="mb-2 w-fit">
+        <Card className="shadow-lg border-0 p-4 bg-dark text-white">
+          <Badge bg="light" className=" text-centermb-2 w-fit text-uppercase my-2">
             <Link
               to={`/products?category=${category}`}
-              className="text-white text-decoration-none fw-bold py-2 px-3 d-block fs-6"
+              className="text-dark text-decoration-none fw-bold py-2 px-3 d-block fs-6"
             >
               {category}
             </Link>
           </Badge>
-          <h2 className="fw-bold">{title}</h2>
+          <h2 className="fw-bold text-uppercase ">{title}</h2>
           {/* Rating */}
           <div className="d-flex align-items-center gap-2 mb-2">
             <span className="fw-bold">{rating}</span>
@@ -103,28 +103,28 @@ export const ProductDetails = () => {
                 )
               )}
             </div>
-            <small className="text-muted">({reviews.length} reviews)</small>
+            <small className="text-light">({reviews.length} reviews)</small>
           </div>
 
           {/* Price */}
           <div className="mb-3">
             <span className="fs-3 fw-bold text-success me-2">${finalPrice}</span>
-            <del className="text-muted me-2">${price}</del>
-            <Badge bg="danger">{discountPercentage.toFixed(1)}% OFF</Badge>
+            <del className="text-light me-2">${price}</del>
+            <Badge bg="light" text="dark">{discountPercentage.toFixed(1)}% OFF!!</Badge>
           </div>
 
           {/* Description */}
-          <p className="text-muted">{description}</p>
+          <p className="text-light">{description}</p>
 
           {/* Stock */}
-          <p className={stock > 0 ? "text-success fw-bold" : "text-danger fw-bold"}>
+          <p className={stock > 0 ? "text-light fw-bold" : "text-danger fw-bold"}>
             {stock > 0 ? "In Stock" : "Out of Stock"}
           </p>
 
           {/* Actions */}
-          <div className="d-flex gap-3 mt-3">
-            <AddToCartButton product={product}/>
-            <Link to="/cart" className="btn btn-outline-dark">
+          <div className="d-flex gap-3 mt-3 w-100">
+            <AddToCartButton product={product} />
+            <Link to="/cart"className="btn btn-outline-light">
               View Cart
             </Link>
           </div>

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const userSlice=createSlice({
     name :"userSlice",
     initialState :{
@@ -11,7 +10,7 @@ const userSlice=createSlice({
         login:(state,action)=>{
             state.user=action.payload;
             state.IsLoggedIn=true;
-            state.isAdmin = action.payload.role === "admin";
+            state.isAdmin = action.payload.role === "admin" || action.payload.role === "moderator";
         },
         logout:(state)=>{
             state.IsLoggedIn=false;

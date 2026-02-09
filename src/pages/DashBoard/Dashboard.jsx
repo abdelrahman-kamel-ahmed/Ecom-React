@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Row, Col, Nav } from "react-bootstrap";
 import { ProductsAdmin } from "../../components/ProductsAdmin/ProductsAdmin";
+import { UsersAdmin } from "../../components/UsersAdmin/UsersAdmin";
 
 export const DashBoard = () => {
     const [activeTab, setActiveTab] = useState("products");
     
-
     return (
         <Row className="min-vh-100">
             {/* Sidebar */}
@@ -20,8 +20,9 @@ export const DashBoard = () => {
                     🛒 Products
                 </Nav.Link>
 
-                <Nav.Link className="text-white disabled">
-                    👤 Users (soon)
+                <Nav.Link onClick={() => setActiveTab("users")}
+                    className={`text-white ${activeTab === "users" && "fw-bold"}`}>
+                👤 Users
                 </Nav.Link>
                 </Nav>
             </Col>
@@ -29,6 +30,8 @@ export const DashBoard = () => {
             {/* Content */}
             <Col md={9}>
                 {activeTab === "products" && <ProductsAdmin />}
+                {activeTab === "users" && <UsersAdmin />}
+
             </Col>
         </Row>
     );

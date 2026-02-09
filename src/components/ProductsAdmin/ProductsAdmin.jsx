@@ -5,11 +5,15 @@ import { errorHandler } from "../../utils/errorHandler";
 import { ProductListPreview } from "../../components/ProductListPreview/ProductListPreview";
 import toast from "react-hot-toast";
 import { AddProductModal } from "../AddProductsModal/AddProductModal";
+import { EditProductModal } from "../EditProductModal/EditProductModal";
 
 export const ProductsAdmin = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [editingProduct, setEditingProduct] = useState(null);
+    const [showEditModal, setShowEditModal] = useState(false);
+
 
     // Fetch products from localStorage or API
     async function fetchProducts() {
@@ -45,9 +49,21 @@ export const ProductsAdmin = () => {
         toast.success("Product added!");
     }
 
+    // EDIT PRODUCT
+    function handleEditClick(product) {
+    setEditingProduct(product);
+    setShowEditModal(true);
+    }
+    function handleUpdate(updatedProduct) {
+    setProducts(prev => {
+        const updated = prev.map(p => p.id === updatedProduct.id ? updatedProduct : p);
+        localStorage.setItem("products", JSON.stringify(updated));
+        return updated;
+    });
+}
 
     // DELETE PRODUCT
-    async function handleDelete(id) {
+    function handleDelete(id) {
     try {
         // 1 Update React state and localStorage
         setProducts(prev => {
@@ -76,12 +92,22 @@ export const ProductsAdmin = () => {
             onAdd={handleAdd} // Pass the handler
             />
         </div>
+        <div>
+            <EditProductModal
+            show={showEditModal}
+            onHide={() => setShowEditModal(false)}
+            product={editingProduct}
+            onUpdate={handleUpdate}
+            />
+        </div>
+
 
         {!loading && (
             <ProductListPreview
             products={products}
-            isAdmin
+            isPublic={false}
             onDelete={handleDelete}
+            onEdit={handleEditClick}
             />
         )}
         </>

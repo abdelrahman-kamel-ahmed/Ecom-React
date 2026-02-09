@@ -60,7 +60,7 @@ export const CategoriesSection = () => {
                     <img
                     src={`https://picsum.photos/300?random=${index}`}
                     alt={category}
-                    className="rounded-circle mb-3 border border-3 border-warning"
+                    className="rounded-circle mb-3 border border-3 border-white"
                     style={{
                         width: "120px",
                         height: "120px",

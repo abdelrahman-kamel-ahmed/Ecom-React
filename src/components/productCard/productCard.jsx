@@ -7,26 +7,31 @@ import { API } from '../../Apis/API_Servece'
 import toast from 'react-hot-toast'
 import { errorHandler } from '../../utils/errorHandler'
 
-export const ProductCard = ({ product, withFooter = false ,onDelete}) => {
+
+
+
+
+export const ProductCard = ({ product, withFooter = false ,onDelete ,onEdit ,isPublic}) => {
     const { title, thumbnail, description, price, id } = product
     const { isAdmin } = useSelector(state => state.user)
 
-    function handleDelete() {
-        onDelete(id);
-    }
+    
+
 
     return (
-        <Card className="h-100 d-flex flex-column shadow-sm">
-        <Card.Img variant="top" src={thumbnail} />
+        <Card className="h-100 d-flex flex-column shadow-sm border-1">
+        <Card.Img src={thumbnail} />
         
         <Card.Body className="flex-grow-1">
             <Card.Title>{title}</Card.Title>
-            <Card.Subtitle className="text-warning fw-bold">${price}</Card.Subtitle>
+            <Card.Subtitle className="text-success fw-bold">${price}</Card.Subtitle>
             <Card.Text className="text-muted small">{description}</Card.Text>
         </Card.Body>
 
         {withFooter && (
-        <Card.Footer className="d-flex flex-column gap-2">
+        <Card.Footer className="d-flex flex-column gap-2" style={{
+            background: "#030329 ",
+        }}>
 
             {/* ROW 1 – always visible */}
             <div className="d-flex gap-2 justify-content-between">
@@ -34,24 +39,26 @@ export const ProductCard = ({ product, withFooter = false ,onDelete}) => {
             <Button 
                 as={Link}
                 to={`/product-details/${id}`}
-                className="btn btn-dark fw-bold">
+                variant='outline-light'
+            >
                 View Details
             </Button>
             </div>
             {/* ROW 2 – admin only */}
-            {isAdmin && (
+            {isAdmin && !isPublic && (
             <div className="d-flex gap-2 justify-content-between">
                 <Button
-                as={Link}
-                to={`/dashboard/edit-product/${id}`}
-                className="btn btn-warning fw-bold w-100"
+                onClick={() => onEdit(product)}
+                className="fw-bold w-100"
+                variant='outline-warning'
                 >
                 Edit
                 </Button>
 
                 <Button
-                onClick={handleDelete}
-                className="btn btn-danger  fw-bold w-100"
+                onClick={() => onDelete(id)}
+                className="fw-bold w-100"
+                variant='outline-danger'
                 >
                 Delete
                 </Button>

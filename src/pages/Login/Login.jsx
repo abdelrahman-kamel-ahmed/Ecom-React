@@ -1,15 +1,19 @@
 import React, { useState, useRef } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Container, Form , InputGroup} from 'react-bootstrap'
 import { errorHandler } from '../../utils/errorHandler';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { API } from '../../Apis/API_Servece';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/slicies/userSlices';
+import { FaEye } from "react-icons/fa";
+import { IoMdEyeOff } from "react-icons/io";
+import { HiQrCode } from 'react-icons/hi2';
 
 export default function Login() {
   //validate data before sending 
   const [validated, setValidated] = useState(false); 
+  const [ispassword, setIsPassword] = useState(true);
   //refs
   const usernameRef=useRef();
   const passwordRef=useRef();
@@ -51,36 +55,67 @@ export default function Login() {
     }
   }
   return (
-    <div>
-      <Form onSubmit={handleLogin} noValidate validated={validated}>
-        {/* email */}
-        <Form.Group className="mb-3">
-          <Form.Label>User Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter user name"  required minLength={2} ref={usernameRef} />
-          <Form.Text className="text-muted">
-            We'll never share your data with anyone else.
-          </Form.Text>
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid user name.
-          </Form.Control.Feedback>
-        </Form.Group>
+    <Container className="d-flex justify-content-center align-items-center min-vh-100">
+  <div
+    className="w-100 p-4 bg-white rounded-4 d-flex flex-column justify-content-center" 
+    style={{
+      maxWidth: "550px",
+      boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+      height: "60vh",
+    }}
+  >
+    <h1 className="text-center mb-4 fw-bold">Login</h1>
 
-        {/* password */}
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="password" required minLength={6} ref ={passwordRef}/>
-          <Form.Text className="text-muted">
-            We'll never share your password with anyone else.
-          </Form.Text>
+    <Form onSubmit={handleLogin} noValidate validated={validated}>
+      {/* username */}
+      <Form.Group className="mb-3">
+        <Form.Label>User Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter user name"
+          required
+          minLength={2}
+          ref={usernameRef}
+        />
         <Form.Control.Feedback type="invalid">
-            Please enter correct password
+          Please provide a valid user name.
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      {/* password */}
+      <Form.Group className="mb-4">
+        <InputGroup hasValidation>
+          <Form.Control
+            type={ispassword ? "password" : "text"}
+            placeholder="Password"
+            ref={passwordRef}
+            required
+            minLength={6}
+          />
+          <InputGroup.Text
+            onClick={() => setIsPassword(prev => !prev)}
+            style={{ cursor: "pointer" }}
+            className="text-primary"
+          >
+            {ispassword ? <FaEye className='text-dark'/> : <IoMdEyeOff  className='text-dark'/>}
+          </InputGroup.Text>
+          <Form.Control.Feedback type="invalid">
+            Please enter a valid password
           </Form.Control.Feedback>
-        </Form.Group>
-        <Button type="submit" className="btn btn-primary fw-bold w-100" style={{maxWidth:"200px"}}>
-          Login
-        </Button>
-      </Form>
-    </div>
+        </InputGroup>
+      </Form.Group>
+
+      {/* button */}
+      <Button
+        type="submit"
+        variant="dark"
+        className="w-100 py-2"
+      >
+        Login
+      </Button>
+    </Form>
+  </div>
+</Container>
 
   )
 }

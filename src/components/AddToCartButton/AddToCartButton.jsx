@@ -10,6 +10,6 @@ export const AddToCartButton = ({product}) => {
     dispatch(addTocart(product));
   }
   return (
-    <Button variant="primary" className='fw-bold' onClick={handleAddToCart} disabled={isDisapled} style={{cursor:isDisapled?"not-allowed":"pointer",pointerEvents:"unset"}}>Add to Cart</Button>
+    <Button variant="outline-light" className=''  onClick={handleAddToCart} disabled={isDisapled} style={{cursor:isDisapled?"not-allowed":"pointer",pointerEvents:"unset"}}>Add to Cart</Button>
   )
 }
