@@ -51,7 +51,7 @@ export const ProductsCategory = () => {
             <span className="text-dark">({allProducts.length})</span>
         </h4>
 
-        <ProductListPreview products={products} />
+        <ProductListPreview products={products} isPublic={true} />
 
         {noPages > 1 && (
             <Paginator

@@ -11,7 +11,7 @@ import { errorHandler } from '../../utils/errorHandler'
 
 
 
-export const ProductCard = ({ product, withFooter = false ,onDelete ,onEdit ,isPublic}) => {
+export const ProductCard = ({ product, withFooter = false , onDelete ,onEdit ,isPublic}) => {
     const { title, thumbnail, description, price, id } = product
     const { isAdmin } = useSelector(state => state.user)
 

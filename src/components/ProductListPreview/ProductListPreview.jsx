@@ -15,10 +15,7 @@ export const ProductListPreview = ({ products, onDelete, onEdit ,isPublic}) => {
                 onDelete={onDelete}  
                 onEdit={onEdit} 
                 isPublic={isPublic}
-                
-
             />
-
             </div>
             </div>
         ))}
